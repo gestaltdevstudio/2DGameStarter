@@ -1,0 +1,24 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gds.starter">
+
+    <application
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:theme="@style/StarterTheme"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name">
+
+        <activity android:name="com.gds.starter.StarterActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+            <!-- Tell NativeActivity the name of our .so -->
+            <meta-data android:name="android.app.lib_name"
+                android:value="Starter" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        </application>
+</manifest>

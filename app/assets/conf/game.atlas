@@ -1,0 +1,90 @@
+
+game.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+arrow
+  rotate: false
+  xy: 2, 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+bone
+  rotate: false
+  xy: 646, 758
+  size: 48, 16
+  orig: 48, 16
+  offset: 0, 0
+  index: -1
+dogAnim2
+  rotate: false
+  xy: 516, 776
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+dogAnim3
+  rotate: false
+  xy: 2, 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+dogAnim4
+  rotate: false
+  xy: 132, 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+dogAnim5
+  rotate: false
+  xy: 516, 646
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+dogAnim6
+  rotate: false
+  xy: 646, 776
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+dogAnim7
+  rotate: false
+  xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+dogAnim8
+  rotate: false
+  xy: 132, 132
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+dogAnim9
+  rotate: false
+  xy: 262, 262
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+exitButton
+  rotate: false
+  xy: 516, 516
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+pressStart2P
+  rotate: false
+  xy: 2, 392
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
