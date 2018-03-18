@@ -5,7 +5,11 @@
 #if defined(__ANDROID__)
 #include "OS_ANDROID.h"
 #else
-#include "OS_GLFW.h"
+#include "OS_GLFW.h"      
+#endif  
+#if defined(__WIN32__)
+#include <windows.h>
+#else
 #include<sys/time.h>
 #endif
 #include "GameScreen.h"

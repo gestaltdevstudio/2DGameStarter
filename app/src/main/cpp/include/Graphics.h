@@ -9,7 +9,7 @@
 #include <GLES3/gl3.h>
 #include <GLES3/gl3ext.h>
 #elif defined(__WIN32__)
-    #include "SO_GLFW.h"
+    #include "OS_GLFW.h"
 #include <glad/glad.h>
 #else
     #include "OS_GLFW.h"

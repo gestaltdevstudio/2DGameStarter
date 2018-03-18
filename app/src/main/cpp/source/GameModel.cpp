@@ -1,4 +1,7 @@
 #include "../include/GameModel.h"
+#if defined(__WIN32__)
+#include <algorithm>
+#endif
 
 namespace GGE
 {

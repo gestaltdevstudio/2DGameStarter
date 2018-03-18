@@ -1,5 +1,7 @@
 #include "../include/OS_GLFW.h"
-
+#if defined(__WIN32__)
+#include <algorithm>
+#endif
 
 #ifndef None
 #define None                 0L
@@ -376,8 +378,8 @@ namespace GGE
                 )
             {
                 Point p;
-                p.x = x;
-                p.y = y;
+                p.x = (int) x;
+                p.y = (int) y;
                 setMouseCoord(calculateMousePoint(p));
                 usleep(400000);
             }
@@ -435,8 +437,8 @@ namespace GGE
 			mh = mode->height;
 
 			overlap =
-				GGE::maxi(0, GGE::mini(wx + ww, mx + mw) - GGE::maxi(wx, mx)) *
-				GGE::maxi(0, GGE::mini(wy + wh, my + mh) - GGE::maxi(wy, my));
+				std::max(0, std::min(wx + ww, mx + mw) - std::max(wx, mx)) *
+				std::max(0, std::min(wy + wh, my + mh) - std::max(wy, my));
 
 			if (bestoverlap < overlap) {
 				bestoverlap = overlap;

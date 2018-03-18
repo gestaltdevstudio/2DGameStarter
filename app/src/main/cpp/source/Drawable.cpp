@@ -10,6 +10,7 @@ namespace GGE
         x = y = 0.0f;
         uvbo = 0;
         flipedX = flipedY = false;
+		rotation = 0;
     }
 
     Drawable::~Drawable()

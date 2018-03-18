@@ -100,8 +100,8 @@ namespace GGE
                 UVs.push_back(uv_down_right);
                 UVs.push_back(uv_up_right);
                 UVs.push_back(uv_down_left);
-                letterX += (vertexWidth * scaleX)
-                 +(float)(((fontChar.xadvance) / font->textureWidth) * scaleX) ;
+                letterX += (int) (vertexWidth * scaleX)
+                 + (float)(((fontChar.xadvance) / font->textureWidth) * scaleX) ;
             }
 
             glBindBuffer(GL_ARRAY_BUFFER, textVertexBufferID);

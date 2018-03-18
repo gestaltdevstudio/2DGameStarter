@@ -5,8 +5,8 @@ namespace GGE
 
     UIObject::UIObject()
     {
-        dimension.x = dimension.y= 1.f;
-        position.x = position.y = 0.f;
+        dimension.x = dimension.y= 1;
+        position.x = position.y = 0;
     }
 
     UIObject::~UIObject()

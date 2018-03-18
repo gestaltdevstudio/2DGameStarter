@@ -108,19 +108,7 @@ namespace GGE
         GGE_RIGHT       = 0x0C,
         GGE_DOWN        = 0x0D
     };
-
-
-
-    inline static int mini(int x, int y)
-    {
-        return x < y ? x : y;
-    }
-
-    inline static int maxi(int x, int y)
-    {
-        return x > y ? x : y;
-    }
-
+    
     inline static char* stristr(const char* str1, const char* str2)
     {
         const char* p1 = str1;
