@@ -47,7 +47,7 @@ set_target_properties(libvorbis PROPERTIES IMPORTED_LOCATION
 ${libs_DIR}/${ANDROID_ABI}/libvorbis.so)
 
 add_library(Starter SHARED android_main.cpp
-source/OS_ANDROID.cpp
+source/android/OS_ANDROID.cpp
 Google/StateManager.cpp
 source/GGEGame.cpp
 source/Graphics.cpp
@@ -91,7 +91,6 @@ target_link_libraries(Starter
     GLESv1_CM
     log
     libzip
-    libbullet
     libopenal
     libogg
     libvorbis

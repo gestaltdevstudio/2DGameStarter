@@ -1,4 +1,4 @@
-#include "../include/OS_ANDROID.h"
+#include "../../include/OS_ANDROID.h"
 
 namespace GGE
 {
