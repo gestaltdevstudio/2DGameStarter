@@ -20,6 +20,8 @@ namespace GGE {
     class Controller;
     struct resourceFile;
 
+    typedef struct GLFWgamepadstate JoystickState;
+
     class OS
 	{
         public:
@@ -41,8 +43,7 @@ namespace GGE {
             inline void setMouseCoord(Point p) { mouseCoord = p; }
             int alert( const char *lpCaption, const char *lpText );
             std::map<int,KeyCode>  keyConversion;
-            const float* getJoystickAxes(int joy, int * count);
-            const unsigned char * getJoystickButtons(int joy, int * count);
+            bool getJoystickState(int joy, JoystickState* joystickState);
             bool checkJoystickPause();
             void addJoystick(int joy);
             void removeJoystick(int joy);

@@ -63,8 +63,6 @@ namespace GGE
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-        glfwSetJoystickCallback(joystick_callback);
-
 		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 
 		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
@@ -83,6 +81,8 @@ namespace GGE
             glfwTerminate();
         } else {
 
+
+            glfwSetJoystickCallback(joystick_callback);
 			glfwSetWindowAspectRatio(window, 4, 3);
 
             glfwSetMouseButtonCallback(window, mouse_button_callback);
@@ -146,29 +146,22 @@ namespace GGE
         return _return;
     }
 
-    const float * OS::getJoystickAxes(int joy, int * count)
-    {
-        if (!glfwJoystickPresent(joy))
-        {
-            *count = 0;
-            return NULL;
-        }
-        return glfwGetJoystickAxes(joy, count);
-    }
-
     std::string OS::getJoystickName(int joy)
     {
         return to_string(glfwGetJoystickName(joy));
     }
 
-    const unsigned char * OS::getJoystickButtons(int joy, int * count)
+    bool OS::getJoystickState(int joy, JoystickState* joystickState)
     {
+
         if (!glfwJoystickPresent(joy))
         {
-            *count = 0;
-            return NULL;
+            return false;
         }
-        return glfwGetJoystickButtons(joy, count);
+
+        glfwGetGamepadState(joy, (GLFWgamepadstate*)joystickState);
+        return true;
+
     }
 
     void OS::procEvent()
@@ -350,15 +343,16 @@ namespace GGE
 			double  xAdd, yAdd;
             glfwGetCursorPos(window, &x, &y);
             JoystickMap joystickMap = getJoystickMap(0);
-            int count;
-            const float * axes = getJoystickAxes(0, &count);
+            GLFWgamepadstate state;
+            glfwGetGamepadState(0, &state);
+            const float * axes = state.axes;
 			xAdd = yAdd = 0;
-            if (count > 0 && (axes[joystickMap.axisX] > 0.2 || axes[joystickMap.axisX] < -0.2))
+            if (state.axes && (axes[joystickMap.axisX] > 0.2 || axes[joystickMap.axisX] < -0.2))
             {
                 xAdd = (axes[joystickMap.axisX]);
             }
 
-            if (count > 0 && (axes[joystickMap.axisY] > 0.2 || axes[joystickMap.axisY] < -0.2))
+            if (state.axes && (axes[joystickMap.axisY] > 0.2 || axes[joystickMap.axisY] < -0.2))
             {
                 yAdd = (axes[joystickMap.axisY]);
             }
@@ -372,8 +366,8 @@ namespace GGE
             y += yAdd;
             glfwSetCursorPos(window, (int) x, (int) y);
 
-            const unsigned char * buttons = getJoystickButtons(0, &count);
-            if (count > 0 &&
+            const unsigned char * buttons = state.buttons;
+            if (state.buttons > 0 &&
                  ( buttons[joystickMap.jump] == GLFW_PRESS)
                 )
             {

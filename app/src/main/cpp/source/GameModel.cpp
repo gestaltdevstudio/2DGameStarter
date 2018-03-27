@@ -52,34 +52,32 @@ namespace GGE
 
         float xVelocity;
 #if !defined(__ANDROID__)
-        int axesCount;
-        int buttonsCount;
-        const float * axes = OS::getInstance()->getJoystickAxes(0, &axesCount);
-        const unsigned char * buttons = OS::getInstance()->getJoystickButtons(0, &buttonsCount);
+        JoystickState joystickState;
+        bool joystickPresent = OS::getInstance()->getJoystickState(0, &joystickState);
 #endif
         if (InputSystem::getInstance()->isKeyDown(GGE_RIGHT)
 #if !defined(__ANDROID__)
-        || (axes && axes[OS::getInstance()->getJoystickMap(0).axisX] > 0.2)
+        || (joystickState.axes && joystickState.axes[OS::getInstance()->getJoystickMap(0).axisX] > 0.2)
 #endif
         )
         {
             xVelocity = horizontalAcceleration * deltaTime;
             playerVelocity.x += playerVelocity.x > maximumHorizontalVelocity ? 0 : xVelocity;
 #if !defined(__ANDROID__)
-            playerVelocity.x *= (axes ? std::min(1.0f, axes[OS::getInstance()->getJoystickMap(0).axisX] + 0.4f)  : 1);
+            playerVelocity.x *= (joystickPresent ? std::min(1.0f, joystickState.axes[OS::getInstance()->getJoystickMap(0).axisX] + 0.4f)  : 1);
 #endif
         } else
 
         if (InputSystem::getInstance()->isKeyDown(GGE_LEFT)
 #if !defined(__ANDROID__)
-        || (axes && axes[OS::getInstance()->getJoystickMap(0).axisX] < -0.2)
+        || (joystickState.axes && joystickState.axes[OS::getInstance()->getJoystickMap(0).axisX] < -0.2)
 #endif
         )
         {
             xVelocity = -horizontalAcceleration * deltaTime;
             playerVelocity.x += playerVelocity.x < -maximumHorizontalVelocity ? 0 : xVelocity;
 #if !defined(__ANDROID__)
-            playerVelocity.x *= (axes ? std::min(1.0f, -axes[OS::getInstance()->getJoystickMap(0).axisX] + 0.4f) :1);
+            playerVelocity.x *= (joystickPresent ? std::min(1.0f, -joystickState.axes[OS::getInstance()->getJoystickMap(0).axisX] + 0.4f) :1);
 #endif
         }
         else
@@ -95,7 +93,7 @@ namespace GGE
 
             if (InputSystem::getInstance()->isKeyDown(GGE_UP)
 #if !defined(__ANDROID__)
-            || (buttons && buttons[OS::getInstance()->getJoystickMap(0).jump])
+            || (joystickPresent && joystickState.buttons[OS::getInstance()->getJoystickMap(0).jump])
 #endif
             )
             {
@@ -117,7 +115,7 @@ namespace GGE
             jumping = true;
             if (InputSystem::getInstance()->isKeyDown(GGE_UP)
 #if !defined(__ANDROID__)
-            || (buttons && buttons[OS::getInstance()->getJoystickMap(0).jump])
+            || (joystickPresent && joystickState.buttons[OS::getInstance()->getJoystickMap(0).jump])
 #endif
             )
             {
