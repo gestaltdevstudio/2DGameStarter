@@ -57,7 +57,7 @@ namespace GGE
 #endif
         if (InputSystem::getInstance()->isKeyDown(GGE_RIGHT)
 #if !defined(__ANDROID__)
-        || (joystickState.axes && joystickState.axes[OS::getInstance()->getJoystickMap(0).axisX] > 0.2)
+        || (joystickPresent && joystickState.axes[OS::getInstance()->getJoystickMap(0).axisX] > 0.2)
 #endif
         )
         {
@@ -70,7 +70,7 @@ namespace GGE
 
         if (InputSystem::getInstance()->isKeyDown(GGE_LEFT)
 #if !defined(__ANDROID__)
-        || (joystickState.axes && joystickState.axes[OS::getInstance()->getJoystickMap(0).axisX] < -0.2)
+        || (joystickPresent && joystickState.axes[OS::getInstance()->getJoystickMap(0).axisX] < -0.2)
 #endif
         )
         {

@@ -44,6 +44,7 @@ namespace GGE
 
         protected:
             std::string             textName;
+            float                   textSize;
             float                   scaleX, scaleY;
             Font                    *font;
 			std::string             textToPrint;

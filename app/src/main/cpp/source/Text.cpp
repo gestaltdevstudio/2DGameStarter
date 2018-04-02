@@ -36,7 +36,7 @@ namespace GGE
             position.x = _x;
             position.y = _y;
             font = _textFont;
-            scaleX = scaleY = 96;
+            textSize = 96;
 
 
             glGenVertexArrays(1, &vao);
@@ -74,10 +74,10 @@ namespace GGE
                 float vertexWidth = (float) fontChar.width / font->textureWidth;
                 float vertexHeight = (float) fontChar.height / font->textureHeight;
 
-                glm::vec2 vertex_up_left    = glm::vec2( letterX                         , y - (vertexHeight * scaleY) - (yOffset * scaleY));
-                glm::vec2 vertex_up_right   = glm::vec2( letterX + (vertexWidth * scaleX), y - (vertexHeight * scaleY) - (yOffset * scaleY));
-                glm::vec2 vertex_down_right = glm::vec2( letterX + (vertexWidth * scaleX), y - (yOffset * scaleY)   );
-                glm::vec2 vertex_down_left  = glm::vec2( letterX                         , y - (yOffset * scaleY)   );
+                glm::vec2 vertex_up_left    = glm::vec2( letterX                         , y - (vertexHeight * (textSize * scaleY)) - (yOffset * (textSize * scaleY)));
+                glm::vec2 vertex_up_right   = glm::vec2( letterX + (vertexWidth * (textSize * scaleX)), y - (vertexHeight * textSize * scaleY) - (yOffset * (textSize * scaleY)));
+                glm::vec2 vertex_down_right = glm::vec2( letterX + (vertexWidth * (textSize * scaleX)), y - (yOffset * (textSize * scaleY))   );
+                glm::vec2 vertex_down_left  = glm::vec2( letterX                         , y - (yOffset * (textSize * scaleY))   );
 
                 vertices.push_back(vertex_up_left   );
                 vertices.push_back(vertex_down_left );
@@ -100,8 +100,8 @@ namespace GGE
                 UVs.push_back(uv_down_right);
                 UVs.push_back(uv_up_right);
                 UVs.push_back(uv_down_left);
-                letterX += (int) (vertexWidth * scaleX)
-                 + (float)(((fontChar.xadvance) / font->textureWidth) * scaleX) ;
+                letterX += (int) (vertexWidth * textSize * scaleX)
+                 + (float)(((fontChar.xadvance) / font->textureWidth) * (textSize * scaleX)) ;
             }
 
             glBindBuffer(GL_ARRAY_BUFFER, textVertexBufferID);

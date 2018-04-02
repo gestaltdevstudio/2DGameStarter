@@ -120,7 +120,9 @@ namespace GGE
         t = new Text();
         t->initText("Text", f, textSh, "pressStart2P", ta, 0, 0);
         t->setText("nsaefOUGH BFSoyjua.,PfAf");
-        t->setPosition(-200, -100);
+        t->setPosition(-400, -100);
+        t->setScaleX(1.5);
+        t->setScaleY(1.5);
         Graphics::getInstance()->addText(t->getName(), t);
         t->setVisible(true);
 
