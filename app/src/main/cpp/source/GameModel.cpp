@@ -22,7 +22,7 @@ namespace GGE
 
         floor = new Entity("Floor");
         floor->setDimension(1920, 150);
-        floor->setPosition(0, -SCREEN_Y/2 + floor->getDimension().y/2);
+        floor->setPosition(0, -SCREEN_Y/2 + floor->getDimension()->y/2);
 //        Graphics::getInstance()->addEntity(floor);
 
 
@@ -45,9 +45,9 @@ namespace GGE
         const float jumpingForce = 150 / playerMass * pixelToMeters;
         const float fallingAcceleration =  0 / playerMass * pixelToMeters;
 
-        float playerY = player->getNextPosition().y;
+        float playerY = player->getNextPosition()->y;
 
-        player->setPreviousPosition(player->getNextPosition().x, player->getNextPosition().y);
+        player->setPreviousPosition(player->getNextPosition()->x, player->getNextPosition()->y);
 
 
         float xVelocity;
@@ -85,10 +85,10 @@ namespace GGE
             playerVelocity.x -= playerVelocity.x * playerHorizontalInertia * deltaTime;
         }
 
-        if(playerY - player->getDimension().y/2 <= floor->getPosition().y + floor->getDimension().y/2)
+        if(playerY - player->getDimension()->y/2 <= floor->getPosition()->y + floor->getDimension()->y/2)
         {
             playerVelocity.y = 0.f;
-            playerY = floor->getPosition().y + floor->getDimension().y/2 + player->getDimension().y/2;
+            playerY = floor->getPosition()->y + floor->getDimension()->y/2 + player->getDimension()->y/2;
             jumpingTimer = 0;
 
             if (InputSystem::getInstance()->isKeyDown(GGE_UP)
@@ -134,23 +134,23 @@ namespace GGE
             jumping = false;
         }
 
-        player->setNextPosition(player->getPreviousPosition().x + playerVelocity.x * deltaTime,
+        player->setNextPosition(player->getPreviousPosition()->x + playerVelocity.x * deltaTime,
                             playerY + playerVelocity.y * deltaTime);
 
     }
 
     void GameModel::interpolate(float alpha)
     {
-        player->setPosition(player->getNextPosition().x * alpha + player->getPreviousPosition().x * (1.0f - alpha),
-                            player->getNextPosition().y * alpha + player->getPreviousPosition().y * (1.0f - alpha));
+        player->setPosition(player->getNextPosition()->x * alpha + player->getPreviousPosition()->x * (1.0f - alpha),
+                            player->getNextPosition()->y * alpha + player->getPreviousPosition()->y * (1.0f - alpha));
 
     }
 
     void GameModel::checkCollision()
     {
-        if(player->getPosition().y - player->getDimension().y/2 <= floor->getPosition().y + floor->getDimension().y/2)
+        if(player->getPosition()->y - player->getDimension()->y/2 <= floor->getPosition()->y + floor->getDimension()->y/2)
         {
-            player->setPosition(player->getPosition().x, floor->getPosition().y + floor->getDimension().y/2 + player->getDimension().y/2);
+            player->setPosition(player->getPosition()->x, floor->getPosition()->y + floor->getDimension()->y/2 + player->getDimension()->y/2);
         }
     }
 

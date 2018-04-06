@@ -3,10 +3,6 @@
 
 void android_main(struct android_app* state) {
 
-    gpg::AndroidPlatformConfiguration platform_configuration;
-    platform_configuration.SetActivity(state->activity->clazz);
-
-
     GGE::Game *game = new GGE::Game();
     game->setAndroidState(state);
 

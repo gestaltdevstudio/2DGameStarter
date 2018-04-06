@@ -8,6 +8,9 @@ namespace GGE
 	{
 	    debugMode = false;
 	    entities.clear();
+	    uiObjects.clear();
+	    texts.clear();
+	    sprites.clear();
 	    animationsPaused = false;
 	    debugShader = 0;
 	    vbo = ebo = 0;
@@ -259,12 +262,12 @@ namespace GGE
         {
             Entity *entity = static_cast<Entity*>(iter->second);
 
-            glm::mat4 modelMatrix = glm::translate(glm::mat4(), glm::vec3(entity->getPosition().x * viewportSize.x / SCREEN_X,
-                                                                          entity->getPosition().y * viewportSize.y / SCREEN_Y,
+            glm::mat4 modelMatrix = glm::translate(glm::mat4(), glm::vec3(entity->getPosition()->x * viewportSize.x / SCREEN_X,
+                                                                          entity->getPosition()->y * viewportSize.y / SCREEN_Y,
                                                                           0))
             * glm::rotate((float)entity->getRotation(), glm::vec3(0,0,1))
-            * glm::scale(glm::vec3(entity->getDimension().x * viewportSize.x / SCREEN_X,
-                                   entity->getDimension().y * viewportSize.y / SCREEN_Y,
+            * glm::scale(glm::vec3(entity->getDimension()->x * viewportSize.x / SCREEN_X,
+                                   entity->getDimension()->y * viewportSize.y / SCREEN_Y,
                                    0));
             glm::mat4 mvp = projectionMatrix * viewMatrix * modelMatrix;
 
@@ -308,8 +311,8 @@ namespace GGE
             if (drawable->isVisible()) {
 
 
-                glm::mat4 modelMatrix = glm::translate(glm::mat4(1), glm::vec3((float) uiObject->getPosition().x * viewportSize.x / SCREEN_X,
-                                                                               (float) uiObject->getPosition().y * viewportSize.y / SCREEN_Y,
+                glm::mat4 modelMatrix = glm::translate(glm::mat4(1), glm::vec3((float) uiObject->getPosition()->x * viewportSize.x / SCREEN_X,
+                                                                               (float) uiObject->getPosition()->y * viewportSize.y / SCREEN_Y,
                                                                                0))
                 * glm::rotate(glm::mat4(1), (float)drawable->getRotation(), glm::vec3(0,0,1))
                 * glm::scale(glm::mat4(1.0), glm::vec3((float) drawable->getScaleX() * drawable->getAtlasRegion()->width * viewportSize.x / SCREEN_X,

@@ -63,8 +63,8 @@ namespace GGE
         d->setShader(sh);
         d->setIsVisible(true);
         exitButton->setDrawable(d);
-        exitButton->setPosition(SCREEN_X/2 - exitButton->getDimension().x/2,
-                            SCREEN_Y/2 - exitButton->getDimension().y/2);
+        exitButton->setPosition(SCREEN_X/2 - exitButton->getDimension()->x/2,
+                            SCREEN_Y/2 - exitButton->getDimension()->y/2);
 
         Graphics::getInstance()->addUIObject("Exit", exitButton);
 
@@ -137,14 +137,14 @@ namespace GGE
 
         Point mouseCoord = OS::getInstance()->getMouseCoord();
 
-        playerSprite->setX(playerSprite->getEntity()->getPosition().x);
-        playerSprite->setY(playerSprite->getEntity()->getPosition().y);
+        playerSprite->setX(playerSprite->getEntity()->getPosition()->x);
+        playerSprite->setY(playerSprite->getEntity()->getPosition()->y);
 
-        if (playerSprite->getEntity()->getNextPosition().x < playerSprite->getEntity()->getPreviousPosition().x)
+        if (playerSprite->getEntity()->getNextPosition()->x < playerSprite->getEntity()->getPreviousPosition()->x)
         {
             playerSprite->setFlipedX(true);
         }
-        else if (playerSprite->getEntity()->getNextPosition().x > playerSprite->getEntity()->getPreviousPosition().x)
+        else if (playerSprite->getEntity()->getNextPosition()->x > playerSprite->getEntity()->getPreviousPosition()->x)
         {
             playerSprite->setFlipedX(false);
         }

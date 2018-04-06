@@ -14,8 +14,8 @@ namespace GGE
     bool Button::isClicked(Point inputPoint)
     {
 
-        return (inputPoint.x >= position.x - round(dimension.x/2) && inputPoint.y >= position.y - round(dimension.y/2) &&
-                inputPoint.x <= position.x + round(dimension.x/2) && inputPoint.y <= position.y + round(dimension.y/2) && drawable->isVisible());
+        return (inputPoint.x >= position->x - round(dimension->x/2) && inputPoint.y >= position->y - round(dimension->y/2) &&
+                inputPoint.x <= position->x + round(dimension->x/2) && inputPoint.y <= position->y + round(dimension->y/2) && drawable->isVisible());
 
     }
 

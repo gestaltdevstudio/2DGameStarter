@@ -61,7 +61,7 @@ namespace GGE {
 
         void toggleFullScreen();
 
-        inline bool isFullScreen() { return fullScreen; };
+//        inline bool isFullScreen() { return fullScreen; };
         inline bool isAlive() {return alive;}
         inline void setIsAlive(bool _alive) {alive = _alive;}
 
@@ -103,7 +103,6 @@ namespace GGE {
         Point mouseCoord;
         Point windowedPosition, windowedSize;
         bool running;
-        bool fullScreen;
         bool alive;
 
         static void error_callback(int error, const char *description);

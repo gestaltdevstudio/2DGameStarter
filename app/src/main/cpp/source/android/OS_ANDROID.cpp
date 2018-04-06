@@ -15,6 +15,11 @@ namespace GGE
 
         tv0 = timeval();
         tv = timeval();
+        touchCoord.x = touchCoord.y = -SCREEN_X - 10;
+        inputCoord[0].x = inputCoord[0].y = -SCREEN_X - 10;
+        inputCoord[1].x = inputCoord[1].y = -SCREEN_X - 10;
+        running = false;
+        alive = false;
         gettimeofday(&tv0, NULL);
     }
 
@@ -32,7 +37,7 @@ namespace GGE
     {
 
         const Point _return = touchCoord;
-        touchCoord.x = touchCoord.y = 0;
+        touchCoord.x = touchCoord.y = -SCREEN_X - 10;
         return calculateMousePoint(_return);
     }
 
