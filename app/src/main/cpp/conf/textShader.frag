@@ -1,5 +1,4 @@
-#version 300 es
-precision mediump float;
+#version 330 core
 //precision lowp sampler2D;
 out vec4 fragColor;
 
