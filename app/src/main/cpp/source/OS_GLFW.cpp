@@ -62,8 +62,10 @@ namespace GGE
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+#if __APPLE__
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
+        GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 
 		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 		glfwWindowHint(GLFW_RED_BITS, mode->redBits);
@@ -367,7 +369,7 @@ namespace GGE
             glfwSetCursorPos(window, (int) x, (int) y);
 
             const unsigned char * buttons = state.buttons;
-            if (state.buttons > 0 &&
+            if (state.buttons &&
                  ( buttons[joystickMap.jump] == GLFW_PRESS)
                 )
             {
