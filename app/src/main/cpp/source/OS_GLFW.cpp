@@ -232,8 +232,8 @@ namespace GGE
                 {
                     char joyError[200];
                     strcpy (joyError, "Joystick \"");
-                    strcpy (joyError, glfwGetJoystickName(joy));
-                    strcpy (joyError, "\" has no gamepad mapping!");
+                    strcat (joyError, glfwGetJoystickName(joy));
+                    strcat (joyError, "\" has no gamepad mapping!");
                     alert("Joystick Error", joyError);
                 }
 
