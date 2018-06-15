@@ -7,12 +7,13 @@ file(COPY ${CPP_DIR}/conf DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
                 
 IF(APPLE)
 
-   file(COPY ${CPP_DIR}/libsOSX DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
    FIND_LIBRARY(COCOA_LIBRARY Cocoa)
    FIND_LIBRARY(OPENGL_LIBRARY OpenGL )
    FIND_LIBRARY(IOKIT_LIBRARY IOKit )
    FIND_LIBRARY(COREVIDEO_LIBRARY CoreVideo )
    FIND_LIBRARY(OPENAL_LIBRARY OpenAL )
+
+   file(GLOB RSC_FILES "${CMAKE_BINARY_DIR}/conf/*")
 
 ENDIF (APPLE)
 
@@ -105,7 +106,7 @@ SET_TARGET_PROPERTIES(libogg PROPERTIES IMPORTED_LOCATION ${CPP_DIR}/libsWin/deb
 endif (MSVC)              
 
 if (APPLE)
-add_executable(Starter MACOSX_BUNDLE ${SOURCES})
+add_executable(Starter MACOSX_BUNDLE ${SOURCES} ${RSC_FILES})
 else()
 add_executable(Starter ${SOURCES})
 endif()
@@ -113,8 +114,7 @@ endif()
 if (APPLE)
   target_link_libraries (Starter glfw ${COCOA_LIBRARY} ${OPENGL_LIBRARY} ${IOKIT_LIBRARY} ${COREVIDEO_LIBRARY} ${OPENAL_LIBRARY} z bz2 libzip libvorbisfile libvorbis libogg)  
 
-EXEC_PROGRAM( "mkdir -p ${CMAKE_BINARY_DIR}/Starter.app/Contents/Resources/conf")
-EXEC_PROGRAM( "cp ${CMAKE_BINARY_DIR}/conf/* ${CMAKE_BINARY_DIR}/Starter.app/Contents/Resources/conf")
+set_source_files_properties(${RSC_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION Resources/conf)
 
 elseif (UNIX)
   target_link_libraries (Starter glfw GL X11 Xxf86vm Xinerama Xcursor Xrandr dl libzip libvorbisfile libvorbis libopenal libogg z)  
