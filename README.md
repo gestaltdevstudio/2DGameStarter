@@ -15,7 +15,7 @@ FontFile Parser | LibGDX Hiero Font Parser (Bitmap) | [Font.h](app/src/main/cpp/
 TextureAtlas Parser | LibGDX TextureAtlas File parser | [TextureAtlas.h](app/src/main/cpp/include/TextureAtlas.h) <br>[TextureAtlas.cpp](app/src/main/cpp/source/TextureAtlas.cpp)   | Done. Just limited to unrotated images |
 
 ## Building
-**Linux & MacOS**
+**Linux & MacOS**<br>
 Requires CMake 2.6+
 
     $ git clone https://github.com/gestaltdevstudio/2DGameStarter.git 
@@ -25,7 +25,7 @@ Requires CMake 2.6+
     $ cmake ..
     $ make
 
-**Windows**
+**Windows**<br>
 Requires CMake 2.6+ and Visual Studio
 
  1. Clone the project from git and create the "build" directory
@@ -44,10 +44,10 @@ Requires CMake 2.6+ and Visual Studio
  9. Right click on **Starter** project and select *Set as Startup Project*.
  10. Now you can run the project. 
 
-**Android**
+**Android**<br>
 Just import the Git project from *Android Studio*
 
-**iOS**
+**iOS**<br>
 Soon...
 
 ## Motivation and Manifest 
