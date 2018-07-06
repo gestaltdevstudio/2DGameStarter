@@ -107,9 +107,8 @@ namespace GGE {
             return NULL;
         }
 #else
- 
-        char path[1024];
-        path[0] = '\0';
+
+        char path[1024] = ".";
  #if defined (__APPLE__)
         CFBundleRef mainBundle = CFBundleGetMainBundle();
         CFURLRef resourcesURL = CFBundleCopyResourcesDirectoryURL(mainBundle);
@@ -118,7 +117,7 @@ namespace GGE {
             exit(1);
         }
         CFRelease(resourcesURL);
-        
+
         chdir(path);
  #endif
 
