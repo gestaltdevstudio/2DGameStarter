@@ -56,7 +56,6 @@ namespace GGE
         s2->setY(300);
         Graphics::getInstance()->addSprite("test2", s2);
 
-
         exitButton = new Button();
         Drawable *d = new Drawable();
         d->loadRegion("exitButton", ta);
@@ -68,7 +67,7 @@ namespace GGE
 
         Graphics::getInstance()->addUIObject("Exit", exitButton);
 
-#if defined(__ANDROID__)
+#if !defined(GGE_DESKTOP)
         leftButton = new Button();
         Drawable *ld = new Drawable();
         ld->loadRegion("arrow", ta);
@@ -154,7 +153,7 @@ namespace GGE
         {
             OS::getInstance()->setRunning(false);
         }
-#if defined(__ANDROID__)
+#if !defined(GGE_DESKTOP)
             if (leftButton->isClicked(OS::getInstance()->getInputCoord(LEFT_HAND)))
             {
                 InputSystem::getInstance()->keyPressed(GGE_LEFT);
@@ -189,7 +188,7 @@ namespace GGE
         delete ta;
         delete f;
         delete t;
-#if defined(__ANDROID__)
+#if !defined(GGE_DESKTOP)
         delete leftButton;
         delete rightButton;
         delete jumpButton;

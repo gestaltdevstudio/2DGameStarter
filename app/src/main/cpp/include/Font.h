@@ -4,8 +4,13 @@
 #include "Resources.h"
 #if defined(__ANDROID__)
 #include "OS_ANDROID.h"
+#elif __APPLE__
+ #include "TargetConditionals.h"
+ #if TARGET_OS_OSX
+  #include "OS_GLFW.h"
+ #endif
 #else
-#include "OS_GLFW.h"
+ #include "OS_GLFW.h"
 #endif
 
 namespace GGE

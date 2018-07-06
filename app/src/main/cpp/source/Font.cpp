@@ -58,7 +58,7 @@ namespace GGE
 
         if (charCount == 0)
         {
-            OS::getInstance()->alert("Error reading Font File", "");
+//            OS::getInstance()->alert("Error reading Font File", "");
         }
         else
         {

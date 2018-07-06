@@ -7,6 +7,7 @@ namespace GGE
     class Screen
     {
         public:
+        virtual ~Screen() {};
             virtual void initScreen() = 0;
             virtual void show() = 0;
             virtual void render(float deltaTime) = 0;

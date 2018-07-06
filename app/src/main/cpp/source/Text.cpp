@@ -25,7 +25,7 @@ namespace GGE
     {
         if (_textureAtlas->regions.find(_textureRegionName) == _textureAtlas->regions.end())
         {
-            OS::getInstance()->alert("Can't initiate Text object", _textName);
+//            OS::getInstance()->alert("Can't initiate Text object", _textName);
         }
         else
         {

@@ -3,9 +3,16 @@
 
 #include "Definitions.h"
 #if defined(__ANDROID__)
-#include "OS_ANDROID.h"
+ #include "OS_ANDROID.h"
+#elif __APPLE__
+ #include "TargetConditionals.h"
+ #if TARGET_OS_OSX
+  #include "OS_GLFW.h"
+ #else
+  #include "OS_iOS.h"
+ #endif
 #else
-#include "OS_GLFW.h"      
+ #include "OS_GLFW.h"
 #endif  
 #if defined(__WIN32__)
 #include <windows.h>
@@ -39,6 +46,10 @@ namespace GGE
 
         void            addScreen(std::string name, Screen* _screen);
         void            removeScreen(std::string name);
+        
+        void            beforeGameLoop();
+        void            gameLoop();
+        void            afterGameLoop();
 
 
 #if defined (__ANDROID__)
@@ -53,8 +64,10 @@ namespace GGE
         bool running;
         bool focused;
         Point mouseCoord;
+        GameScreen *gameScreen;
         std::map<std::string, Screen*> screens;
         Screen *activeScreen;
+        float deltaTime;
         float nowTime, lastTime;
     };
 }

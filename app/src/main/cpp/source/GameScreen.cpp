@@ -24,14 +24,13 @@ namespace GGE
         gameModel->initModel();
         gameView->initView();
         accumulator = 0;
-
+        OS::getInstance()->setRunning(true);
     }
 
     void GameScreen::render(float deltaTime)
     {
 
-        OS::getInstance()->checkInputEvent();
-#if !defined(__ANDROID__)
+#if defined(GGE_DESKTOP)
         if (InputSystem::getInstance()->isKeyDown(GGE_ESCAPE) && OS::getInstance()->isFullScreen())
         {
             OS::getInstance()->toggleFullScreen();
@@ -54,7 +53,6 @@ namespace GGE
         gameModel->checkCollision();
         gameView->step(deltaTime);
 
-        OS::getInstance()->swapBuffer();
     }
 
 

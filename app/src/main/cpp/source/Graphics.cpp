@@ -39,8 +39,6 @@ namespace GGE
 	     setupGL();
 	     OS::getInstance()->resizeWindow();
 
-
-
         float fixedVertices[12] = {
              0.5f,  0.5f, 0.0f,
              0.5f, -0.5f, 0.0f,
@@ -88,6 +86,8 @@ namespace GGE
         viewportPosition.x = windowSize.x / 2 - viewportSize.x/2;
         viewportPosition.y = windowSize.y /2 - viewportSize.y/2;
         glViewport(viewportPosition.x, viewportPosition.y, (GLsizei)viewportSize.x, (GLsizei)viewportSize.y);
+        glEnable(GL_SCISSOR_TEST);
+        glScissor(viewportPosition.x, viewportPosition.y, (GLsizei)viewportSize.x, (GLsizei)viewportSize.y);
         projectionMatrix = glm::ortho((float)- viewportSize.x/2, (float)viewportSize.x/2, (float)- viewportSize.y/2, (float)viewportSize.y/2, -1.0f, 1.0f);
         viewMatrix = glm::lookAt(glm::vec3(0,0,1), glm::vec3(0,0,0), glm::vec3(0,1,0));
 	}
@@ -132,6 +132,12 @@ namespace GGE
     {
         glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+        
+        glViewport(viewportPosition.x, viewportPosition.y, (GLsizei)viewportSize.x, (GLsizei)viewportSize.y);
+        projectionMatrix = glm::ortho((float)- viewportSize.x/2, (float)viewportSize.x/2, (float)- viewportSize.y/2, (float)viewportSize.y/2, -1.0f, 1.0f);
+        glEnable(GL_SCISSOR_TEST);
+        glScissor(viewportPosition.x, viewportPosition.y, (GLsizei)viewportSize.x, (GLsizei)viewportSize.y);
+        viewMatrix = glm::lookAt(glm::vec3(0,0,1), glm::vec3(0,0,0), glm::vec3(0,1,0));
 
 
         GLenum err;

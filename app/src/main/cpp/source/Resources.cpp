@@ -6,6 +6,10 @@
 #include "../include/OS_ANDROID.h"
 #endif
 
+#ifdef __APPLE__
+#include "CoreFoundation/CoreFoundation.h"
+#endif
+
 namespace GGE {
 
     Resources* Resources::instance = 0;
@@ -103,9 +107,24 @@ namespace GGE {
             return NULL;
         }
 #else
+ 
+        char path[1024];
+        path[0] = '\0';
+ #if defined (__APPLE__)
+        CFBundleRef mainBundle = CFBundleGetMainBundle();
+        CFURLRef resourcesURL = CFBundleCopyResourcesDirectoryURL(mainBundle);
+        if (!CFURLGetFileSystemRepresentation(resourcesURL, TRUE, (UInt8 *)path, PATH_MAX))
+        {
+            exit(1);
+        }
+        CFRelease(resourcesURL);
+        
+        chdir(path);
+ #endif
 
         long size;
-        std::ifstream File(("conf/" + to_string(cfileName)).c_str(), std::ifstream::binary);
+//        std::cout << "Current Path: " << (to_string(path) + "/conf/" + to_string(cfileName)).c_str() << std::endl;
+        std::ifstream File((to_string(path) + "/conf/" + to_string(cfileName)).c_str(), std::ifstream::binary);
         if(File.is_open()){
 
            File.seekg(0, std::ifstream::end);

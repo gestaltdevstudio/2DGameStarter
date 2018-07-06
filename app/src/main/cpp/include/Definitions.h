@@ -15,11 +15,18 @@
 #include<glm/gtx/transform.hpp>
 #include <glm/gtx/norm.hpp>
 #if defined(__ANDROID__)
-#include <GLES/gl.h>
-#include <GLES3/gl3.h>
-#include <GLES3/gl3ext.h>
+ #include <GLES/gl.h>
+ #include <GLES3/gl3.h>
+ #include <GLES3/gl3ext.h>
+#elif __APPLE__
+ #include "TargetConditionals.h"
+ #if TARGET_OS_OSX
+  #include <glad/glad.h>
+ #else
+  #include <OpenGLES/ES3/gl.h>
+ #endif
 #else
-#include <glad/glad.h>
+ #include <glad/glad.h>
 #endif
 
 #ifndef FIXED_ASPECT_RATIO

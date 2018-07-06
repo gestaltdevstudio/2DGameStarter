@@ -5,34 +5,52 @@ namespace GGE
 
     void Game::play()
     {
+        beforeGameLoop();
+
+        while (OS::getInstance()->getRunning())
+        {
+            gameLoop();
+        }
+
+        afterGameLoop();
+    }
+    
+    void Game::beforeGameLoop()
+    {
         initResources();
         initSO();
-//        Graphics::getInstance()->setDebugMode(true);
+        //        Graphics::getInstance()->setDebugMode(true);
         initGraphics();
         initInputSystem();
-
-        GameScreen *gameScreen = new GameScreen();
+        
+        gameScreen = new GameScreen();
         addScreen("Game", gameScreen);
         activeScreen = gameScreen;
         activeScreen->show();
         focused = true;
-
-        float deltaTime;
-
-        while (OS::getInstance()->getRunning())
+    }
+    
+    void Game::gameLoop()
+    {
+        nowTime = OS::getInstance()->getTime();
+        deltaTime = nowTime - lastTime;
+        lastTime = nowTime;
+        checkFocused();
+        if (focused)
         {
-
-            nowTime = OS::getInstance()->getTime();
-            deltaTime = nowTime - lastTime;
-            lastTime = nowTime;
-            checkFocused();
+            OS::getInstance()->checkInputEvent();
             activeScreen->render(deltaTime);
-
+            
+            OS::getInstance()->swapBuffer();
         }
-
+        
+    }
+    
+    void Game::afterGameLoop()
+    {
         activeScreen->pause();
         activeScreen->finish();
-        delete gameScreen;
+        delete screens["Game"];
         finishGraphics();
         finishResources();
         finishSO();
@@ -92,7 +110,7 @@ namespace GGE
 
     void Game::initSO(int width, int height, bool fullScreen)
     {
-#if !defined(__ANDROID__)
+#if defined(GGE_DESKTOP)
         OS::getInstance()->createWindow("Starter", width, height, fullScreen);
 #endif
     }

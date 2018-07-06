@@ -31,7 +31,7 @@ namespace GGE
             Text *t;
             Button *exitButton;
 
-#if defined(__ANDROID__)
+#if !defined(GGE_DESKTOP)
             Button *leftButton;
             Button *rightButton;
             Button *jumpButton;
