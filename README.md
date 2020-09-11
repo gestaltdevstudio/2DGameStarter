@@ -68,3 +68,7 @@ Why so simple or why "to reinvent the wheel"? The main objective here is to gene
  - Arnaud Masserann from www.opengl-tutorial.org
  - Joey De Vries from www.learnopengl.com
 
+Also thank you for being here!
+ 
+## Was this helpful?
+Support my work -> https://www.patreon.com/nardelli
